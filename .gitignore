@@ -137,3 +137,4 @@ datasets/
 
 # Databases
 pg/
+sqlite.db
