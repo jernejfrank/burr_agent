@@ -1,0 +1,121 @@
+[project]
+name = "burr-agent"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "beartype>=0.19.0",
+    "burr[start]>=0.36.0",
+    "fastapi>=0.115.6",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "coverage[toml]>=7.6.2",
+    "pre-commit>=4.0.1",
+    "pyright>=1.1.384",
+    "pytest-cov>=5.0.0",
+    "pytest>=8.3.3",
+    "ruff>=0.6.9",
+]
+
+[tool.pyright]
+include = [
+    "burr_agent"
+  ]
+exclude = [
+  "tests",
+  "docs"
+]
+venvPath = "."
+venv = ".venv"
+
+
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.coverage.paths]
+source = ["burr_agent", "*/site-packages"]
+
+[tool.coverage.run]
+branch = true
+source = ["burr_agent"]
+
+[tool.coverage.report]
+show_missing = true
+
+[tool.ruff]
+line-length = 88
+indent-width = 4
+fix = true
+
+[tool.ruff.lint]
+select = [
+  "A",  # flake8-builtins
+  "ANN",  # flake8-annotations
+  "B",  # flake8-bugbear
+  "BLE",  # flake8-blind-except
+  "C4", # flake8-comprehensions
+  "C",  # mccabe
+  "D",  # flake8-docstrings
+  "E", "F",  # flake8
+  "FA",  # Verifies files use from __future__ import annotations if a type is used in the module that can be rewritten using PEP 563.
+  "FURB", # Refurbishing and modernizing Python codebases
+  "G",  # flake8-logging-format
+  "I",  # isort
+  "ISC",  # flake8-implicit-str-concat
+  "LOG", # Checks for issues using the standard library logging module.
+  "N",  # pep8-naming
+  "NPY", # Linting rules for numpy
+  "PERF",# Linting rules for performance
+  "PGH", # pygrep-hooks
+  "Q",   # Linting rules for quites
+  "RUF",  # Ruff-specific rules
+  "S",  # flake8-bandit
+  "SIM",  # flake8-simplify
+  "T10", # flake8-debugger
+  "T20", # Check for Print statements in python files.
+  "TCH", # Move type-only imports to a type-checking block.
+  "TID", # Helps you write tidier imports.
+  "TRY", # tryceratops
+  "UP", # pyupgrade
+  "W",   # pycodestyle warnings
+  "YTT", # flake8-2020,
+]
+
+ignore = [
+    "ANN101",
+    "E731",
+    "F403",
+    "PGH003",
+    "PGH004",
+
+]
+
+unfixable = [
+  "ERA",  # Don't remove commented-out code
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+preview = true
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = [
+    "D100",
+    "D103",
+    "S101", # asserts allowed in tests...
+    "ARG", # Unused function args -> fixtures nevertheless are functionally relevant...
+    "FBT", # Don't care about booleans as positional arguments in tests, e.g. via @pytest.mark.parametrize()
+]
+"__init__.py" = [
+    "F401",
+    "D104"
+]
