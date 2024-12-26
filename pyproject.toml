@@ -8,6 +8,8 @@ dependencies = [
     "beartype>=0.19.0",
     "burr[start]>=0.36.0",
     "fastapi>=0.115.6",
+    "notebook>=7.3.2",
+    "ollama>=0.4.4",
 ]
 
 [tool.uv]
@@ -50,6 +52,9 @@ show_missing = true
 line-length = 88
 indent-width = 4
 fix = true
+exclude = [
+    "*.ipynb",
+]
 
 [tool.ruff.lint]
 select = [
