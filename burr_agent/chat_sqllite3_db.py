@@ -7,8 +7,6 @@ from burr.core import Application, persistence
 
 from burr_agent import app_graph
 
-# APP_PREBUILT = app_graph()
-
 
 def create_chat_app(user: str) -> Application:
     """Creating unique chat app for each user."""
